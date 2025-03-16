@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Offline Audio Test</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .test-controls {
+      background-color: #f5f5f5;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    select, button {
+      padding: 8px;
+      margin: 5px;
+    }
+    button {
+      background-color: #0078d4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #106ebe;
+    }
+    .report {
+      background-color: #f0f0f0;
+      padding: 15px;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      font-family: monospace;
+      max-height: 400px;
+      overflow: auto;
+    }
+    .test-section {
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+    }
+    .success {
+      color: green;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>Offline Audio Test</h1>
+  
+  <div class="test-section">
+    <h2>Test Single Audio File</h2>
+    <div class="test-controls">
+      <select id="language-select">
+        <option value="en">English (en)</option>
+        <option value="es">Spanish (es)</option>
+        <option value="fr">French (fr)</option>
+        <option value="de">German (de)</option>
+        <option value="it">Italian (it)</option>
+        <option value="zh">Chinese (zh)</option>
+        <option value="ja">Japanese (ja)</option>
+        <option value="ko">Korean (ko)</option>
+        <option value="ru">Russian (ru)</option>
+        <option value="ar">Arabic (ar)</option>
+        <option value="pt">Portuguese (pt)</option>
+        <option value="nl">Dutch (nl)</option>
+        <option value="pl">Polish (pl)</option>
+        <option value="el">Greek (el)</option>
+        <option value="tr">Turkish (tr)</option>
+        <option value="hu">Hungarian (hu)</option>
+        <option value="hi">Hindi (hi)</option>
+        <option value="fa">Farsi (fa)</option>
+      </select>
+      
+      <select id="track-select">
+        <option value="01">Track 01</option>
+        <option value="05">Track 05</option>
+        <option value="10">Track 10</option>
+        <option value="15">Track 15</option>
+        <option value="20">Track 20</option>
+        <option value="25">Track 25</option>
+        <option value="30">Track 30</option>
+      </select>
+      
+      <button id="check-cache-btn">Check If Cached</button>
+      <button id="download-btn">Download For Offline</button>
+      <button id="play-btn">Test Play</button>
+    </div>
+    
+    <div id="single-result" class="report"></div>
+  </div>
+  
+  <div class="test-section">
+    <h2>Cache Status Report</h2>
+    <div class="test-controls">
+      <button id="cache-report-btn">Generate Cache Report</button>
+      <button id="clear-cache-btn">Clear All Audio Caches</button>
+    </div>
+    
+    <div id="cache-report" class="report"></div>
+  </div>
+  
+  <script>
+    // Utility functions
+    function getAudioUrl(language, track) {
+      return `https://accfree.nextaudioguides.com/assets/audio/${language}/Audio-Track-${track}.mp3`;
+    }
+    
+    async function isAudioCached(audioUrl) {
+      try {
+        if (!('caches' in window)) {
+          return { cached: false, error: 'Cache API not supported' };
+        }
+        
+        // Extract language from URL
+        const languageMatch = audioUrl.match(/\/audio\/([a-z]{2})\//);
+        const language = languageMatch ? languageMatch[1] : 'unknown';
+        
+        // Check language-specific cache first
+        if (language !== 'unknown') {
+          try {
+            const langCache = await caches.open(`accademia-audio-${language}`);
+            const langResponse = await langCache.match(audioUrl);
+            
+            if (langResponse) {
+              return { 
+                cached: true, 
+                source: `language-cache-${language}`,
+                headers: getResponseHeaders(langResponse)
+              };
+            }
+          } catch (e) {
+            console.warn(`Error checking language cache: ${e.message}`);
+          }
+        }
+        
+        // Check main audio cache
+        try {
+          const mainCache = await caches.open('audio-cache-v6');
+          const mainResponse = await mainCache.match(audioUrl);
+          
+          if (mainResponse) {
+            return { 
+              cached: true, 
+              source: 'audio-cache-v6',
+              headers: getResponseHeaders(mainResponse)
+            };
+          }
+        } catch (e) {
+          console.warn(`Error checking main cache: ${e.message}`);
+        }
+        
+        // Check accademia-audio cache
+        try {
+          const generalCache = await caches.open('accademia-audio');
+          const generalResponse = await generalCache.match(audioUrl);
+          
+          if (generalResponse) {
+            return { 
+              cached: true, 
+              source: 'accademia-audio',
+              headers: getResponseHeaders(generalResponse)
+            };
+          }
+        } catch (e) {
+          console.warn(`Error checking general cache: ${e.message}`);
+        }
+        
+        return { cached: false };
+      } catch (error) {
+        return { cached: false, error: error.message };
+      }
+    }
+    
+    function getResponseHeaders(response) {
+      if (!response || !response.headers) return {};
+      
+      const headers = {};
+      for (const [key, value] of response.headers.entries()) {
+        headers[key] = value;
+      }
+      return headers;
+    }
+    
+    async function prefetchAudio(audioUrl) {
+      try {
+        const cacheStatus = await isAudioCached(audioUrl);
+        if (cacheStatus.cached) {
+          return { success: true, message: `Already cached in ${cacheStatus.source}` };
+        }
+        
+        // Extract language from URL for better caching
+        const languageMatch = audioUrl.match(/\/audio\/([a-z]{2})\//);
+        const language = languageMatch ? languageMatch[1] : 'unknown';
+        
+        // Use XMLHttpRequest to fetch the audio
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', audioUrl, true);
+          xhr.responseType = 'arraybuffer';
+          
+          xhr.onload = async function() {
+            if (xhr.status === 200) {
+              const arrayBuffer = xhr.response;
+              
+              try {
+                // Store in language-specific cache
+                if (language !== 'unknown') {
+                  try {
+                    const languageBlob = new Blob([arrayBuffer], { type: 'audio/mpeg' });
+                    const languageHeaders = new Headers({
+                      'Content-Type': 'audio/mpeg',
+                      'Content-Length': languageBlob.size.toString(),
+                      'Cache-Control': 'public, max-age=31536000'
+                    });
+                    
+                    const languageCachedResponse = new Response(languageBlob, {
+                      status: 200,
+                      statusText: 'OK',
+                      headers: languageHeaders
+                    });
+                    
+                    const languageCache = await caches.open(`accademia-audio-${language}`);
+                    await languageCache.put(audioUrl, languageCachedResponse);
+                    console.log(`Cached in language-specific cache for ${language}`);
+                  } catch (error) {
+                    console.error(`Failed to cache in language-specific cache: ${error.message}`);
+                  }
+                }
+                
+                // Also store in the audio-cache-v6
+                try {
+                  const v6Blob = new Blob([arrayBuffer], { type: 'audio/mpeg' });
+                  const v6Headers = new Headers({
+                    'Content-Type': 'audio/mpeg',
+                    'Content-Length': v6Blob.size.toString(),
+                    'Cache-Control': 'public, max-age=31536000'
+                  });
+                  
+                  const v6CachedResponse = new Response(v6Blob, {
+                    status: 200,
+                    statusText: 'OK',
+                    headers: v6Headers
+                  });
+                  
+                  const v6Cache = await caches.open('audio-cache-v6');
+                  await v6Cache.put(audioUrl, v6CachedResponse);
+                  console.log(`Cached in audio-cache-v6`);
+                } catch (error) {
+                  console.error(`Failed to cache in audio-cache-v6: ${error.message}`);
+                }
+                
+                // Verify it was cached
+                const newCacheStatus = await isAudioCached(audioUrl);
+                if (newCacheStatus.cached) {
+                  resolve({ 
+                    success: true, 
+                    message: `Successfully cached in ${newCacheStatus.source}` 
+                  });
+                } else {
+                  resolve({ 
+                    success: false, 
+                    message: 'Failed to verify cache after download' 
+                  });
+                }
+              } catch (error) {
+                resolve({ 
+                  success: false, 
+                  message: `Error during caching: ${error.message}` 
+                });
+              }
+            } else {
+              resolve({ 
+                success: false, 
+                status: xhr.status,
+                message: `Failed to download (status ${xhr.status})` 
+              });
+            }
+          };
+          
+          xhr.onerror = function(error) {
+            resolve({ 
+              success: false, 
+              message: `Network error: ${error}` 
+            });
+          };
+          
+          xhr.send();
+        });
+      } catch (error) {
+        return { success: false, message: `Unexpected error: ${error.message}` };
+      }
+    }
+    
+    async function clearAudioCaches() {
+      const results = { cleared: [] };
+      
+      if (!('caches' in window)) {
+        return { error: 'Cache API not supported' };
+      }
+      
+      try {
+        // Get all cache names
+        const cacheNames = await caches.keys();
+        
+        // Find all audio-related caches
+        const audioCaches = cacheNames.filter(name => 
+          name === 'audio-cache-v6' || 
+          name === 'audio-cache-v5' || 
+          name === 'accademia-audio' ||
+          name.startsWith('accademia-audio-')
+        );
+        
+        // Delete each cache
+        for (const cacheName of audioCaches) {
+          await caches.delete(cacheName);
+          results.cleared.push(cacheName);
+        }
+        
+        return results;
+      } catch (error) {
+        return { error: error.message, cleared: results.cleared };
+      }
+    }
+    
+    async function testPlayAudio(audioUrl) {
+      try {
+        // Check if cached first
+        const cacheStatus = await isAudioCached(audioUrl);
+        
+        // Create audio element
+        const audio = new Audio();
+        
+        return new Promise((resolve) => {
+          const events = [];
+          let canPlay = false;
+          let didPlay = false;
+          
+          // Set up timeout
+          const timeout = setTimeout(() => {
+            resolve({
+              cached: cacheStatus.cached,
+              cacheSource: cacheStatus.source,
+              loadable: canPlay,
+              playable: didPlay,
+              events,
+              error: 'Timeout waiting for audio to load or play'
+            });
+          }, 15000);
+          
+          // Track events
+          audio.addEventListener('loadstart', () => events.push('loadstart'));
+          audio.addEventListener('loadedmetadata', () => events.push('loadedmetadata'));
+          audio.addEventListener('loadeddata', () => events.push('loadeddata'));
+          
+          audio.addEventListener('canplaythrough', () => {
+            events.push('canplaythrough');
+            canPlay = true;
+            
+            // Try to play
+            audio.volume = 0.01; // Very low volume
+            audio.play()
+              .then(() => {
+                events.push('playing');
+                didPlay = true;
+                
+                // Stop after 1 second
+                setTimeout(() => {
+                  audio.pause();
+                  clearTimeout(timeout);
+                  resolve({
+                    cached: cacheStatus.cached,
+                    cacheSource: cacheStatus.source,
+                    loadable: canPlay,
+                    playable: didPlay,
+                    events
+                  });
+                }, 1000);
+              })
+              .catch(playError => {
+                events.push(`play_error: ${playError.message}`);
+                clearTimeout(timeout);
+                resolve({
+                  cached: cacheStatus.cached,
+                  cacheSource: cacheStatus.source,
+                  loadable: canPlay,
+                  playable: false,
+                  events,
+                  playError: playError.message
+                });
+              });
+          });
+          
+          audio.addEventListener('error', () => {
+            const errorCode = audio.error ? audio.error.code : 'unknown';
+            const errorMessage = audio.error ? audio.error.message : 'Unknown error';
+            events.push(`error (${errorCode}): ${errorMessage}`);
+            
+            clearTimeout(timeout);
+            resolve({
+              cached: cacheStatus.cached,
+              cacheSource: cacheStatus.source,
+              loadable: false,
+              playable: false,
+              events,
+              error: `Audio error (${errorCode}): ${errorMessage}`
+            });
+          });
+          
+          // Start loading
+          audio.src = audioUrl;
+          audio.load();
+        });
+      } catch (error) {
+        return {
+          loadable: false,
+          playable: false,
+          error: `Unexpected error: ${error.message}`
+        };
+      }
+    }
+    
+    async function generateCacheReport() {
+      if (!('caches' in window)) {
+        return { error: 'Cache API not supported' };
+      }
+      
+      try {
+        const report = {
+          timestamp: new Date().toISOString(),
+          navigator: {
+            onLine: navigator.onLine,
+            userAgent: navigator.userAgent
+          },
+          caches: {},
+          languages: {},
+          summary: {
+            totalCaches: 0,
+            totalFiles: 0,
+            filesByLanguage: {}
+          }
+        };
+        
+        // Get all cache names
+        const cacheNames = await caches.keys();
+        report.summary.totalCaches = cacheNames.length;
+        
+        // Check each cache
+        for (const cacheName of cacheNames) {
+          // Only check audio-related caches
+          if (cacheName === 'audio-cache-v6' || 
+              cacheName === 'audio-cache-v5' || 
+              cacheName === 'accademia-audio' ||
+              cacheName.startsWith('accademia-audio-')) {
+            
+            const cache = await caches.open(cacheName);
+            const keys = await cache.keys();
+            
+            report.caches[cacheName] = {
+              totalFiles: keys.length,
+              files: []
+            };
+            
+            // Process each file in the cache
+            for (const request of keys) {
+              const url = request.url;
+              
+              // Parse language from URL
+              const languageMatch = url.match(/\/audio\/([a-z]{2})\//);
+              const language = languageMatch ? languageMatch[1] : 'unknown';
+              
+              // Add to language stats
+              if (!report.languages[language]) {
+                report.languages[language] = {
+                  totalFiles: 0,
+                  caches: {}
+                };
+              }
+              if (!report.languages[language].caches[cacheName]) {
+                report.languages[language].caches[cacheName] = 0;
+              }
+              report.languages[language].totalFiles++;
+              report.languages[language].caches[cacheName]++;
+              
+              // Add to summary
+              if (!report.summary.filesByLanguage[language]) {
+                report.summary.filesByLanguage[language] = 0;
+              }
+              report.summary.filesByLanguage[language]++;
+              report.summary.totalFiles++;
+              
+              // Get file details
+              const response = await cache.match(request);
+              const fileDetails = {
+                url,
+                language,
+                contentType: response.headers.get('content-type'),
+                contentLength: response.headers.get('content-length')
+              };
+              
+              report.caches[cacheName].files.push(fileDetails);
+            }
+          }
+        }
+        
+        return report;
+      } catch (error) {
+        return { error: error.message };
+      }
+    }
+    
+    // Setup UI interactions
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get UI elements
+      const languageSelect = document.getElementById('language-select');
+      const trackSelect = document.getElementById('track-select');
+      const checkCacheBtn = document.getElementById('check-cache-btn');
+      const downloadBtn = document.getElementById('download-btn');
+      const playBtn = document.getElementById('play-btn');
+      const singleResult = document.getElementById('single-result');
+      const cacheReportBtn = document.getElementById('cache-report-btn');
+      const clearCacheBtn = document.getElementById('clear-cache-btn');
+      const cacheReport = document.getElementById('cache-report');
+      
+      // Helper to get selected audio URL
+      function getSelectedAudioUrl() {
+        const language = languageSelect.value;
+        const track = trackSelect.value;
+        return getAudioUrl(language, track);
+      }
+      
+      // Format JSON for output
+      function formatResult(result) {
+        return JSON.stringify(result, null, 2);
+      }
+      
+      // Check if cached button
+      checkCacheBtn.addEventListener('click', async function() {
+        singleResult.textContent = 'Checking cache status...';
+        const audioUrl = getSelectedAudioUrl();
+        const result = await isAudioCached(audioUrl);
+        
+        if (result.cached) {
+          singleResult.innerHTML = `<span class="success">✓ File is cached in ${result.source}</span>\n\n${formatResult(result)}`;
+        } else {
+          singleResult.innerHTML = `<span class="error">✗ File is NOT cached</span>\n\n${formatResult(result)}`;
+        }
+      });
+      
+      // Download button
+      downloadBtn.addEventListener('click', async function() {
+        singleResult.textContent = 'Downloading audio file...';
+        const audioUrl = getSelectedAudioUrl();
+        const result = await prefetchAudio(audioUrl);
+        
+        if (result.success) {
+          singleResult.innerHTML = `<span class="success">✓ ${result.message}</span>\n\n${formatResult(result)}`;
+        } else {
+          singleResult.innerHTML = `<span class="error">✗ ${result.message}</span>\n\n${formatResult(result)}`;
+        }
+      });
+      
+      // Play button
+      playBtn.addEventListener('click', async function() {
+        singleResult.textContent = 'Testing audio playback...';
+        const audioUrl = getSelectedAudioUrl();
+        const result = await testPlayAudio(audioUrl);
+        
+        if (result.playable) {
+          singleResult.innerHTML = `<span class="success">✓ Audio played successfully</span>\n\n${formatResult(result)}`;
+        } else if (result.loadable) {
+          singleResult.innerHTML = `<span class="error">✗ Audio loaded but couldn't play: ${result.playError || 'Unknown error'}</span>\n\n${formatResult(result)}`;
+        } else {
+          singleResult.innerHTML = `<span class="error">✗ Audio failed to load: ${result.error || 'Unknown error'}</span>\n\n${formatResult(result)}`;
+        }
+      });
+      
+      // Cache report button
+      cacheReportBtn.addEventListener('click', async function() {
+        cacheReport.textContent = 'Generating cache report...';
+        const result = await generateCacheReport();
+        
+        if (result.error) {
+          cacheReport.innerHTML = `<span class="error">✗ Error generating report: ${result.error}</span>`;
+        } else {
+          // Create a summary
+          let summary = `<span class="success">✓ Found ${result.summary.totalFiles} audio files across ${Object.keys(result.caches).length} caches</span>\n\n`;
+          
+          // Add language breakdown
+          summary += `Files by language:\n`;
+          for (const [lang, count] of Object.entries(result.summary.filesByLanguage)) {
+            summary += `${lang}: ${count} files\n`;
+          }
+          
+          cacheReport.innerHTML = summary + '\n\nFull report:\n' + formatResult(result);
+        }
+      });
+      
+      // Clear cache button
+      clearCacheBtn.addEventListener('click', async function() {
+        if (confirm('Are you sure you want to clear all audio caches?')) {
+          cacheReport.textContent = 'Clearing caches...';
+          const result = await clearAudioCaches();
+          
+          if (result.error) {
+            cacheReport.innerHTML = `<span class="error">✗ Error clearing caches: ${result.error}</span>\n\n${formatResult(result)}`;
+          } else {
+            cacheReport.innerHTML = `<span class="success">✓ Successfully cleared ${result.cleared.length} caches</span>\n\n${formatResult(result)}`;
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html> 

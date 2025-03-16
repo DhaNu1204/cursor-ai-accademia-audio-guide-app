@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Module Test</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .success {
+      color: green;
+      font-weight: bold;
+    }
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      overflow: auto;
+      border-radius: 4px;
+    }
+    .test-section {
+      margin-bottom: 30px;
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 5px;
+    }
+    .report-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .report-content {
+      background-color: white;
+      width: 90%;
+      max-width: 1000px;
+      max-height: 80vh;
+      border-radius: 8px;
+      overflow: auto;
+      padding: 20px;
+      position: relative;
+    }
+    .report-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      position: sticky;
+      bottom: 0;
+      background-color: white;
+      padding: 10px 0;
+      border-top: 1px solid #eee;
+    }
+    .report-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #666;
+    }
+    .copy-button, .generate-report-button {
+      padding: 10px 15px;
+      background-color: #0078d4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .copy-button:hover, .generate-report-button:hover {
+      background-color: #106ebe;
+    }
+    .report-timestamp {
+      color: #666;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+    .event-log {
+      max-height: 200px;
+      overflow-y: auto;
+      font-size: 12px;
+      font-family: monospace;
+    }
+    .event-log-entry {
+      margin: 4px 0;
+      padding: 2px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .event-log-timestamp {
+      color: #999;
+      margin-right: 8px;
+    }
+    #summary-header {
+      position: sticky;
+      top: 0;
+      background-color: white;
+      border-bottom: 1px solid #ddd;
+      padding: 10px;
+      margin: -10px -10px 10px -10px;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <h1>JavaScript Module Test</h1>
+  
+  <div class="test-section">
+    <h2>Report Generation</h2>
+    <p>Click the button below to generate a comprehensive report that captures the current state, all test results, browser information, and network activity:</p>
+    <button id="generate-report" class="generate-report-button">Generate Diagnostic Report</button>
+  </div>
+  
+  <div class="test-section">
+    <h2>Basic Script Test</h2>
+    <div id="results">Testing script loading...</div>
+  </div>
+  
+  <div class="test-section">
+    <h2>Test Module Import</h2>
+    <div id="module-test">Testing module import...</div>
+  </div>
+  
+  <div class="test-section">
+    <h2>Diagnostics:</h2>
+    <div id="diagnostics"></div>
+  </div>
+  
+  <div class="test-section">
+    <h2>MIME Type Check:</h2>
+    <div id="mime-check">
+      <p>Checking MIME types...</p>
+    </div>
+  </div>
+
+  <div class="test-section">
+    <h2>Headers Test:</h2>
+    <div id="headers-test">
+      <p>Checking response headers...</p>
+    </div>
+  </div>
+  
+  <div class="test-section">
+    <h2>Event Log:</h2>
+    <div id="event-log" class="event-log"></div>
+  </div>
+  
+  <!-- Report modal container -->
+  <div id="report-container" class="report-container">
+    <div class="report-content">
+      <button id="report-close" class="report-close">×</button>
+      <div id="report-text"></div>
+      <div class="report-actions">
+        <button id="copy-report" class="copy-button">Copy Full Report</button>
+        <span id="copy-status"></span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Diagnostic event logging
+    const eventLog = [];
+    const maxEvents = 100;
+    
+    function logEvent(message, type = 'info') {
+      const timestamp = new Date().toISOString();
+      const event = { timestamp, message, type };
+      eventLog.unshift(event);
+      
+      if (eventLog.length > maxEvents) {
+        eventLog.pop();
+      }
+      
+      updateEventLogDisplay();
+      return event;
+    }
+    
+    function updateEventLogDisplay() {
+      const eventLogElement = document.getElementById('event-log');
+      eventLogElement.innerHTML = '';
+      
+      eventLog.forEach(event => {
+        const entryElement = document.createElement('div');
+        entryElement.className = `event-log-entry event-type-${event.type}`;
+        
+        const timestampElement = document.createElement('span');
+        timestampElement.className = 'event-log-timestamp';
+        timestampElement.textContent = event.timestamp.substring(11, 23);
+        
+        entryElement.appendChild(timestampElement);
+        entryElement.appendChild(document.createTextNode(event.message));
+        
+        eventLogElement.appendChild(entryElement);
+      });
+    }
+    
+    // Collection of test results
+    const testResults = {
+      browserInfo: {},
+      mimeTypes: {},
+      moduleTest: {},
+      headers: {},
+      requests: [],
+      events: [],
+      timestamp: new Date().toISOString()
+    };
+    
+    // Intercept fetch requests for monitoring
+    const originalFetch = window.fetch;
+    window.fetch = async function(resource, options) {
+      const url = typeof resource === 'string' ? resource : resource.url;
+      const startTime = performance.now();
+      
+      logEvent(`Fetching: ${url}`);
+      
+      try {
+        const response = await originalFetch(resource, options);
+        
+        const duration = performance.now() - startTime;
+        const requestInfo = {
+          url,
+          status: response.status,
+          statusText: response.statusText,
+          contentType: response.headers.get('content-type'),
+          duration: Math.round(duration),
+          timestamp: new Date().toISOString()
+        };
+        
+        testResults.requests.push(requestInfo);
+        logEvent(`Fetch complete: ${url} (${response.status}, ${Math.round(duration)}ms)`);
+        
+        // Create a clone we can use (response can only be used once)
+        return response.clone();
+      } catch (error) {
+        logEvent(`Fetch error: ${url} - ${error.message}`, 'error');
+        throw error;
+      }
+    };
+    
+    // Create the diagnostic report
+    function generateReport() {
+      logEvent('Generating diagnostic report...');
+      
+      // Update with latest event log
+      testResults.events = [...eventLog];
+      testResults.timestamp = new Date().toISOString();
+      
+      // Format results as readable text
+      const reportText = formatReport(testResults);
+      
+      // Display report
+      document.getElementById('report-text').innerHTML = reportText;
+      document.getElementById('report-container').style.display = 'flex';
+      
+      logEvent('Report generated and displayed');
+    }
+    
+    // Format the report as readable HTML
+    function formatReport(results) {
+      const { browserInfo, mimeTypes, moduleTest, headers, requests, events, timestamp } = results;
+      
+      // Test summary section
+      let moduleStatus = 'Unknown';
+      if (moduleTest.success === true) {
+        moduleStatus = '<span class="success">SUCCESS</span>';
+      } else if (moduleTest.success === false) {
+        moduleStatus = `<span class="error">FAILED: ${moduleTest.error || 'Unknown error'}</span>`;
+      }
+      
+      let mimeTypeStatus = 'Unknown';
+      if (mimeTypes.moduleContentType && mimeTypes.moduleContentType.includes('javascript')) {
+        mimeTypeStatus = '<span class="success">CORRECT</span>';
+      } else if (mimeTypes.moduleContentType) {
+        mimeTypeStatus = `<span class="error">INCORRECT: ${mimeTypes.moduleContentType}</span>`;
+      }
+      
+      const report = `
+        <div id="summary-header">
+          <h2>Diagnostic Report</h2>
+          <div class="report-timestamp">Generated: ${timestamp}</div>
+          
+          <h3>Quick Summary</h3>
+          <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; width: 100%">
+            <tr>
+              <th>Test</th>
+              <th>Status</th>
+            </tr>
+            <tr>
+              <td>JavaScript Modules Loading</td>
+              <td>${moduleStatus}</td>
+            </tr>
+            <tr>
+              <td>MIME Type Correctness</td>
+              <td>${mimeTypeStatus}</td>
+            </tr>
+            <tr>
+              <td>Total Network Requests</td>
+              <td>${requests.length}</td>
+            </tr>
+          </table>
+        </div>
+        
+        <h3>Browser Information</h3>
+        <pre>${JSON.stringify(browserInfo, null, 2)}</pre>
+        
+        <h3>Module Test Results</h3>
+        <pre>${JSON.stringify(moduleTest, null, 2)}</pre>
+        
+        <h3>MIME Type Check</h3>
+        <pre>${JSON.stringify(mimeTypes, null, 2)}</pre>
+        
+        <h3>Response Headers</h3>
+        <pre>${JSON.stringify(headers, null, 2)}</pre>
+        
+        <h3>Network Requests (${requests.length})</h3>
+        <pre>${JSON.stringify(requests, null, 2)}</pre>
+        
+        <h3>Event Log (${events.length})</h3>
+        <pre>${JSON.stringify(events, null, 2)}</pre>
+      `;
+      
+      return report;
+    }
+    
+    // Set up copy functionality
+    document.getElementById('copy-report').addEventListener('click', function() {
+      const reportText = document.getElementById('report-text').innerText;
+      navigator.clipboard.writeText(reportText)
+        .then(() => {
+          document.getElementById('copy-status').textContent = '✓ Copied to clipboard!';
+          setTimeout(() => {
+            document.getElementById('copy-status').textContent = '';
+          }, 2000);
+        })
+        .catch(err => {
+          document.getElementById('copy-status').textContent = `❌ Error: ${err.message}`;
+        });
+    });
+    
+    // Close report modal
+    document.getElementById('report-close').addEventListener('click', function() {
+      document.getElementById('report-container').style.display = 'none';
+    });
+    
+    // Generate report button
+    document.getElementById('generate-report').addEventListener('click', generateReport);
+    
+    // Test basic script functionality
+    logEvent('Starting script tests...');
+    document.getElementById('results').innerHTML = '<p>Regular script loading works.</p>';
+    logEvent('Regular script test completed successfully');
+    
+    // Add diagnostic information
+    logEvent('Collecting browser diagnostic information...');
+    const diagnostics = document.getElementById('diagnostics');
+    
+    // Collect browser information
+    testResults.browserInfo = {
+      userAgent: navigator.userAgent,
+      platform: navigator.platform,
+      language: navigator.language,
+      cookiesEnabled: navigator.cookieEnabled,
+      online: navigator.onLine,
+      serviceWorkerSupport: 'serviceWorker' in navigator,
+      cacheApiSupport: 'caches' in window,
+      screenWidth: window.innerWidth,
+      screenHeight: window.innerHeight,
+      highResDisplay: window.devicePixelRatio > 1,
+      timestamp: new Date().toISOString()
+    };
+    
+    diagnostics.innerHTML = `
+      <pre>
+User Agent: ${testResults.browserInfo.userAgent}
+Platform: ${testResults.browserInfo.platform}
+Online: ${testResults.browserInfo.online}
+Service Worker API: ${testResults.browserInfo.serviceWorkerSupport ? 'Available' : 'Not Available'}
+Cache API: ${testResults.browserInfo.cacheApiSupport ? 'Available' : 'Not Available'}
+      </pre>
+    `;
+    logEvent('Browser diagnostic information collected');
+    
+    // Check MIME types by fetching assets
+    async function checkMimeTypes() {
+      const mimeCheck = document.getElementById('mime-check');
+      mimeCheck.innerHTML = '<p>Testing MIME types of various files...</p>';
+      logEvent('Starting MIME type checks...');
+      
+      try {
+        // Check test module file
+        logEvent('Checking test-module.js MIME type...');
+        const moduleResponse = await fetch('/test-module.js');
+        const moduleContentType = moduleResponse.headers.get('content-type');
+        logEvent(`test-module.js content type: ${moduleContentType}`);
+        
+        // Check a CSS file
+        logEvent('Checking CSS MIME type...');
+        const cssResponse = await fetch('/assets/index-CkSPFxac.css');
+        const cssContentType = cssResponse.headers.get('content-type');
+        logEvent(`CSS content type: ${cssContentType}`);
+
+        // Store results
+        testResults.mimeTypes = {
+          moduleContentType,
+          cssContentType
+        };
+        
+        mimeCheck.innerHTML = `
+          <p>Module file MIME type: <span class="${moduleContentType?.includes('javascript') ? 'success' : 'error'}">${moduleContentType || 'Unknown'}</span></p>
+          <p>CSS file MIME type: <span class="${cssContentType?.includes('css') ? 'success' : 'error'}">${cssContentType || 'Unknown'}</span></p>
+        `;
+        logEvent('MIME type checks completed');
+      } catch (error) {
+        logEvent(`Error checking MIME types: ${error.message}`, 'error');
+        mimeCheck.innerHTML = `<p class="error">Error checking MIME types: ${error.message}</p>`;
+        testResults.mimeTypes.error = error.message;
+      }
+    }
+    
+    // Test response headers
+    async function checkHeaders() {
+      const headersTest = document.getElementById('headers-test');
+      headersTest.innerHTML = '<p>Checking response headers...</p>';
+      logEvent('Starting header checks...');
+      
+      try {
+        const response = await fetch('/test-module.js');
+        const headers = {};
+        
+        for (const [key, value] of response.headers.entries()) {
+          headers[key] = value;
+        }
+        
+        // Store results
+        testResults.headers = headers;
+        
+        headersTest.innerHTML = `
+          <p>Response Headers:</p>
+          <pre>${JSON.stringify(headers, null, 2)}</pre>
+        `;
+        logEvent('Header checks completed');
+      } catch (error) {
+        logEvent(`Error checking headers: ${error.message}`, 'error');
+        headersTest.innerHTML = `<p class="error">Error checking headers: ${error.message}</p>`;
+        testResults.headers.error = error.message;
+      }
+    }
+    
+    // Run the checks
+    checkMimeTypes();
+    checkHeaders();
+  </script>
+  
+  <!-- Test module loading -->
+  <script type="module">
+    try {
+      console.log('Module script execution started');
+      
+      // Import the test module
+      import { testMessage, testFunction } from '/test-module.js';
+      
+      const moduleTest = document.getElementById('module-test');
+      moduleTest.innerHTML = `
+        <p class="success">✓ ${testMessage}</p>
+        <p>Function result: ${testFunction()}</p>
+      `;
+      
+      console.log('Module loaded successfully');
+      
+      // Store results
+      window.testResults.moduleTest = {
+        success: true,
+        message: testMessage,
+        functionResult: testFunction()
+      };
+      
+      window.logEvent('ES Module import test completed successfully');
+    } catch (error) {
+      console.error('Module loading error:', error);
+      
+      document.getElementById('module-test').innerHTML = `
+        <p class="error">✗ Module import error: ${error.message}</p>
+        <pre>${error.stack}</pre>
+      `;
+      
+      // Store results
+      window.testResults.moduleTest = {
+        success: false,
+        error: error.message,
+        stack: error.stack
+      };
+      
+      window.logEvent(`ES Module import test failed: ${error.message}`, 'error');
+    }
+  </script>
+</body>
+</html> 

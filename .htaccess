@@ -1,0 +1,102 @@
+# Enable rewriting
+RewriteEngine On
+
+# Set base
+RewriteBase /
+
+# Force JavaScript MIME types (high priority)
+<FilesMatch "\.(js|mjs)$">
+  ForceType application/javascript
+</FilesMatch>
+
+# Handle properly serving JavaScript modules with correct MIME types
+<IfModule mod_mime.c>
+  # Set JavaScript MIME types correctly
+  AddType application/javascript .js
+  AddType application/javascript .mjs
+  
+  # JSON MIME type
+  AddType application/json .json
+  
+  # CSS MIME type
+  AddType text/css .css
+  
+  # Image MIME types
+  AddType image/svg+xml .svg
+  AddType image/png .png
+  AddType image/jpeg .jpg .jpeg
+  AddType image/webp .webp
+  
+  # Font MIME types
+  AddType font/ttf .ttf
+  AddType font/otf .otf
+  AddType font/woff .woff
+  AddType font/woff2 .woff2
+  
+  # Audio MIME types
+  AddType audio/mpeg .mp3
+  AddType audio/mp4 .m4a
+  AddType audio/ogg .ogg
+</IfModule>
+
+# Enable CORS
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|mjs|css|json|mp3|jpg|jpeg|png|gif|webp|svg|ttf|otf|woff|woff2)$">
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, OPTIONS"
+    Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Range"
+  </FilesMatch>
+  
+  # Force Content-Type for JavaScript files
+  <FilesMatch "\.(js|mjs)$">
+    Header set Content-Type "application/javascript"
+  </FilesMatch>
+</IfModule>
+
+# Handle frontend routing
+# Don't rewrite files or directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Rewrite everything else to index.html to allow frontend routing
+RewriteRule ^ index.html [L]
+
+# Security headers
+<IfModule mod_headers.c>
+  # Prevent MIME type sniffing
+  Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# Cache control
+<IfModule mod_expires.c>
+  ExpiresActive on
+  
+  # Cache all static assets for 1 week except HTML
+  ExpiresDefault "access plus 1 week"
+  
+  # HTML - short cache
+  ExpiresByType text/html "access plus 0 seconds"
+  
+  # CSS and JavaScript - 1 week
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+  
+  # Media files - 1 month
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  
+  # Audio files - 1 month
+  ExpiresByType audio/mpeg "access plus 1 month"
+  
+  # Fonts - 1 year
+  ExpiresByType font/ttf "access plus 1 year"
+  ExpiresByType font/otf "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# Disable directory listing
+Options -Indexes 

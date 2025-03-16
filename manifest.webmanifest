@@ -1,0 +1,29 @@
+{
+  "name": "Accademia Gallery Audio Guide",
+  "short_name": "Accademia Guide",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "lang": "en",
+  "scope": "/",
+  "description": "Audio guide for the Accademia Gallery in Florence",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/assets/images/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/images/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/images/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+} 
