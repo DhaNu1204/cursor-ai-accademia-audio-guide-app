@@ -1,5 +1,3 @@
-# cursor-ai-accademia-audio-guide-app
-
 # Accademia Gallery Audio Guide
 
 A Progressive Web App (PWA) that serves as an audio guide for visitors to the Accademia Gallery in Florence. The app provides audio commentary, images, and descriptions for exhibits in multiple languages with offline support.

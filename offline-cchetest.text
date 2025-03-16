@@ -1,0 +1,974 @@
+✓ Found 114 audio files across 21 caches
+
+Files by language:
+en: 54 files
+ko: 10 files
+ru: 6 files
+fr: 4 files
+es: 2 files
+de: 2 files
+it: 8 files
+zh: 4 files
+ja: 4 files
+ar: 4 files
+pt: 2 files
+nl: 2 files
+pl: 2 files
+el: 2 files
+tr: 2 files
+hu: 2 files
+hi: 2 files
+fa: 2 files
+
+
+Full report:
+{
+  "timestamp": "2025-03-16T10:36:15.898Z",
+  "navigator": {
+    "onLine": true,
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+  },
+  "caches": {
+    "audio-cache-v6": {
+      "totalFiles": 49,
+      "files": [
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-01.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "288809"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-02.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "1478321"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-03.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "302184"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-04.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "870609"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-05.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "381596"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-06.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "326844"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-07.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "349831"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-08.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "384940"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-09.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "498625"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-10.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "769044"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-11.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "2064718"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-12.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "385171"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-13.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "450977"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-14.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "389955"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-15.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "385358"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-16.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "1230471"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-17.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "967157"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-18.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "569678"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-25.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "334367"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ko/Audio-Track-25.mp3",
+          "language": "ko",
+          "contentType": "audio/mpeg",
+          "contentLength": "443454"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ru/Audio-Track-20.mp3",
+          "language": "ru",
+          "contentType": "audio/mpeg",
+          "contentLength": "3065730"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/fr/Audio-Track-20.mp3",
+          "language": "fr",
+          "contentType": "audio/mpeg",
+          "contentLength": "3036473"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/es/Audio-Track-30.mp3",
+          "language": "es",
+          "contentType": "audio/mpeg",
+          "contentLength": "495281"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/fr/Audio-Track-05.mp3",
+          "language": "fr",
+          "contentType": "audio/mpeg",
+          "contentLength": "384940"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/de/Audio-Track-25.mp3",
+          "language": "de",
+          "contentType": "audio/mpeg",
+          "contentLength": "432169"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/it/Audio-Track-25.mp3",
+          "language": "it",
+          "contentType": "audio/mpeg",
+          "contentLength": "601"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/it/Audio-Track-10.mp3",
+          "language": "it",
+          "contentType": "audio/mpeg",
+          "contentLength": "601"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/it/Audio-Track-01.mp3",
+          "language": "it",
+          "contentType": "audio/mpeg",
+          "contentLength": "601"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/it/Audio-Track-30.mp3",
+          "language": "it",
+          "contentType": "audio/mpeg",
+          "contentLength": "601"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/zh/Audio-Track-30.mp3",
+          "language": "zh",
+          "contentType": "audio/mpeg",
+          "contentLength": "483578"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/zh/Audio-Track-20.mp3",
+          "language": "zh",
+          "contentType": "audio/mpeg",
+          "contentLength": "2682880"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ja/Audio-Track-20.mp3",
+          "language": "ja",
+          "contentType": "audio/mpeg",
+          "contentLength": "4281155"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ja/Audio-Track-05.mp3",
+          "language": "ja",
+          "contentType": "audio/mpeg",
+          "contentLength": "525792"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ko/Audio-Track-05.mp3",
+          "language": "ko",
+          "contentType": "audio/mpeg",
+          "contentLength": "525792"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ko/Audio-Track-10.mp3",
+          "language": "ko",
+          "contentType": "audio/mpeg",
+          "contentLength": "920346"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ko/Audio-Track-15.mp3",
+          "language": "ko",
+          "contentType": "audio/mpeg",
+          "contentLength": "521613"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ko/Audio-Track-20.mp3",
+          "language": "ko",
+          "contentType": "audio/mpeg",
+          "contentLength": "2693329"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ru/Audio-Track-01.mp3",
+          "language": "ru",
+          "contentType": "audio/mpeg",
+          "contentLength": "275435"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ru/Audio-Track-10.mp3",
+          "language": "ru",
+          "contentType": "audio/mpeg",
+          "contentLength": "746057"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ar/Audio-Track-10.mp3",
+          "language": "ar",
+          "contentType": "audio/mpeg",
+          "contentLength": "899866"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ar/Audio-Track-15.mp3",
+          "language": "ar",
+          "contentType": "audio/mpeg",
+          "contentLength": "429244"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/pt/Audio-Track-01.mp3",
+          "language": "pt",
+          "contentType": "audio/mpeg",
+          "contentLength": "379506"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/nl/Audio-Track-01.mp3",
+          "language": "nl",
+          "contentType": "audio/mpeg",
+          "contentLength": "315559"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/pl/Audio-Track-01.mp3",
+          "language": "pl",
+          "contentType": "audio/mpeg",
+          "contentLength": "323082"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/el/Audio-Track-01.mp3",
+          "language": "el",
+          "contentType": "audio/mpeg",
+          "contentLength": "358609"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/tr/Audio-Track-01.mp3",
+          "language": "tr",
+          "contentType": "audio/mpeg",
+          "contentLength": "341472"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/hu/Audio-Track-01.mp3",
+          "language": "hu",
+          "contentType": "audio/mpeg",
+          "contentLength": "305946"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/hi/Audio-Track-01.mp3",
+          "language": "hi",
+          "contentType": "audio/mpeg",
+          "contentLength": "413779"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/fa/Audio-Track-01.mp3",
+          "language": "fa",
+          "contentType": "audio/mpeg",
+          "contentLength": "343144"
+        }
+      ]
+    },
+    "accademia-audio-en": {
+      "totalFiles": 18,
+      "files": [
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-02.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "1478321"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-03.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "302184"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-04.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "870609"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-05.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "381596"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-06.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "326844"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-07.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "349831"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-08.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "384940"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-09.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "498625"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-10.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "769044"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-11.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "2064718"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-12.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "385171"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-13.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "450977"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-14.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "389955"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-15.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "385358"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-16.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "1230471"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-17.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "967157"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-18.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "569678"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-25.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "334367"
+        }
+      ]
+    },
+    "audio-cache-v5": {
+      "totalFiles": 0,
+      "files": []
+    },
+    "accademia-audio": {
+      "totalFiles": 17,
+      "files": [
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-02.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "1478321"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-03.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "302184"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-04.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "870609"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-05.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "381596"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-06.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "326844"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-07.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "349831"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-08.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "384940"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-09.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "498625"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-10.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "769044"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-11.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "2064718"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-12.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "385171"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-13.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "450977"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-14.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "389955"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-15.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "385358"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-16.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "1230471"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-17.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "967157"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/en/Audio-Track-18.mp3",
+          "language": "en",
+          "contentType": "audio/mpeg",
+          "contentLength": "569678"
+        }
+      ]
+    },
+    "accademia-audio-ko": {
+      "totalFiles": 5,
+      "files": [
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ko/Audio-Track-25.mp3",
+          "language": "ko",
+          "contentType": "audio/mpeg",
+          "contentLength": "443454"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ko/Audio-Track-05.mp3",
+          "language": "ko",
+          "contentType": "audio/mpeg",
+          "contentLength": "525792"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ko/Audio-Track-10.mp3",
+          "language": "ko",
+          "contentType": "audio/mpeg",
+          "contentLength": "920346"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ko/Audio-Track-15.mp3",
+          "language": "ko",
+          "contentType": "audio/mpeg",
+          "contentLength": "521613"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ko/Audio-Track-20.mp3",
+          "language": "ko",
+          "contentType": "audio/mpeg",
+          "contentLength": "2693329"
+        }
+      ]
+    },
+    "accademia-audio-ru": {
+      "totalFiles": 3,
+      "files": [
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ru/Audio-Track-20.mp3",
+          "language": "ru",
+          "contentType": "audio/mpeg",
+          "contentLength": "3065730"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ru/Audio-Track-01.mp3",
+          "language": "ru",
+          "contentType": "audio/mpeg",
+          "contentLength": "275435"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ru/Audio-Track-10.mp3",
+          "language": "ru",
+          "contentType": "audio/mpeg",
+          "contentLength": "746057"
+        }
+      ]
+    },
+    "accademia-audio-fr": {
+      "totalFiles": 2,
+      "files": [
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/fr/Audio-Track-20.mp3",
+          "language": "fr",
+          "contentType": "audio/mpeg",
+          "contentLength": "3036473"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/fr/Audio-Track-05.mp3",
+          "language": "fr",
+          "contentType": "audio/mpeg",
+          "contentLength": "384940"
+        }
+      ]
+    },
+    "accademia-audio-es": {
+      "totalFiles": 1,
+      "files": [
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/es/Audio-Track-30.mp3",
+          "language": "es",
+          "contentType": "audio/mpeg",
+          "contentLength": "495281"
+        }
+      ]
+    },
+    "accademia-audio-de": {
+      "totalFiles": 1,
+      "files": [
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/de/Audio-Track-25.mp3",
+          "language": "de",
+          "contentType": "audio/mpeg",
+          "contentLength": "432169"
+        }
+      ]
+    },
+    "accademia-audio-it": {
+      "totalFiles": 4,
+      "files": [
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/it/Audio-Track-25.mp3",
+          "language": "it",
+          "contentType": "audio/mpeg",
+          "contentLength": "601"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/it/Audio-Track-10.mp3",
+          "language": "it",
+          "contentType": "audio/mpeg",
+          "contentLength": "601"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/it/Audio-Track-01.mp3",
+          "language": "it",
+          "contentType": "audio/mpeg",
+          "contentLength": "601"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/it/Audio-Track-30.mp3",
+          "language": "it",
+          "contentType": "audio/mpeg",
+          "contentLength": "601"
+        }
+      ]
+    },
+    "accademia-audio-zh": {
+      "totalFiles": 2,
+      "files": [
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/zh/Audio-Track-30.mp3",
+          "language": "zh",
+          "contentType": "audio/mpeg",
+          "contentLength": "483578"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/zh/Audio-Track-20.mp3",
+          "language": "zh",
+          "contentType": "audio/mpeg",
+          "contentLength": "2682880"
+        }
+      ]
+    },
+    "accademia-audio-ja": {
+      "totalFiles": 2,
+      "files": [
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ja/Audio-Track-20.mp3",
+          "language": "ja",
+          "contentType": "audio/mpeg",
+          "contentLength": "4281155"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ja/Audio-Track-05.mp3",
+          "language": "ja",
+          "contentType": "audio/mpeg",
+          "contentLength": "525792"
+        }
+      ]
+    },
+    "accademia-audio-ar": {
+      "totalFiles": 2,
+      "files": [
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ar/Audio-Track-10.mp3",
+          "language": "ar",
+          "contentType": "audio/mpeg",
+          "contentLength": "899866"
+        },
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/ar/Audio-Track-15.mp3",
+          "language": "ar",
+          "contentType": "audio/mpeg",
+          "contentLength": "429244"
+        }
+      ]
+    },
+    "accademia-audio-pt": {
+      "totalFiles": 1,
+      "files": [
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/pt/Audio-Track-01.mp3",
+          "language": "pt",
+          "contentType": "audio/mpeg",
+          "contentLength": "379506"
+        }
+      ]
+    },
+    "accademia-audio-nl": {
+      "totalFiles": 1,
+      "files": [
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/nl/Audio-Track-01.mp3",
+          "language": "nl",
+          "contentType": "audio/mpeg",
+          "contentLength": "315559"
+        }
+      ]
+    },
+    "accademia-audio-pl": {
+      "totalFiles": 1,
+      "files": [
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/pl/Audio-Track-01.mp3",
+          "language": "pl",
+          "contentType": "audio/mpeg",
+          "contentLength": "323082"
+        }
+      ]
+    },
+    "accademia-audio-el": {
+      "totalFiles": 1,
+      "files": [
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/el/Audio-Track-01.mp3",
+          "language": "el",
+          "contentType": "audio/mpeg",
+          "contentLength": "358609"
+        }
+      ]
+    },
+    "accademia-audio-tr": {
+      "totalFiles": 1,
+      "files": [
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/tr/Audio-Track-01.mp3",
+          "language": "tr",
+          "contentType": "audio/mpeg",
+          "contentLength": "341472"
+        }
+      ]
+    },
+    "accademia-audio-hu": {
+      "totalFiles": 1,
+      "files": [
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/hu/Audio-Track-01.mp3",
+          "language": "hu",
+          "contentType": "audio/mpeg",
+          "contentLength": "305946"
+        }
+      ]
+    },
+    "accademia-audio-hi": {
+      "totalFiles": 1,
+      "files": [
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/hi/Audio-Track-01.mp3",
+          "language": "hi",
+          "contentType": "audio/mpeg",
+          "contentLength": "413779"
+        }
+      ]
+    },
+    "accademia-audio-fa": {
+      "totalFiles": 1,
+      "files": [
+        {
+          "url": "https://accfree.nextaudioguides.com/assets/audio/fa/Audio-Track-01.mp3",
+          "language": "fa",
+          "contentType": "audio/mpeg",
+          "contentLength": "343144"
+        }
+      ]
+    }
+  },
+  "languages": {
+    "en": {
+      "totalFiles": 54,
+      "caches": {
+        "audio-cache-v6": 19,
+        "accademia-audio-en": 18,
+        "accademia-audio": 17
+      }
+    },
+    "ko": {
+      "totalFiles": 10,
+      "caches": {
+        "audio-cache-v6": 5,
+        "accademia-audio-ko": 5
+      }
+    },
+    "ru": {
+      "totalFiles": 6,
+      "caches": {
+        "audio-cache-v6": 3,
+        "accademia-audio-ru": 3
+      }
+    },
+    "fr": {
+      "totalFiles": 4,
+      "caches": {
+        "audio-cache-v6": 2,
+        "accademia-audio-fr": 2
+      }
+    },
+    "es": {
+      "totalFiles": 2,
+      "caches": {
+        "audio-cache-v6": 1,
+        "accademia-audio-es": 1
+      }
+    },
+    "de": {
+      "totalFiles": 2,
+      "caches": {
+        "audio-cache-v6": 1,
+        "accademia-audio-de": 1
+      }
+    },
+    "it": {
+      "totalFiles": 8,
+      "caches": {
+        "audio-cache-v6": 4,
+        "accademia-audio-it": 4
+      }
+    },
+    "zh": {
+      "totalFiles": 4,
+      "caches": {
+        "audio-cache-v6": 2,
+        "accademia-audio-zh": 2
+      }
+    },
+    "ja": {
+      "totalFiles": 4,
+      "caches": {
+        "audio-cache-v6": 2,
+        "accademia-audio-ja": 2
+      }
+    },
+    "ar": {
+      "totalFiles": 4,
+      "caches": {
+        "audio-cache-v6": 2,
+        "accademia-audio-ar": 2
+      }
+    },
+    "pt": {
+      "totalFiles": 2,
+      "caches": {
+        "audio-cache-v6": 1,
+        "accademia-audio-pt": 1
+      }
+    },
+    "nl": {
+      "totalFiles": 2,
+      "caches": {
+        "audio-cache-v6": 1,
+        "accademia-audio-nl": 1
+      }
+    },
+    "pl": {
+      "totalFiles": 2,
+      "caches": {
+        "audio-cache-v6": 1,
+        "accademia-audio-pl": 1
+      }
+    },
+    "el": {
+      "totalFiles": 2,
+      "caches": {
+        "audio-cache-v6": 1,
+        "accademia-audio-el": 1
+      }
+    },
+    "tr": {
+      "totalFiles": 2,
+      "caches": {
+        "audio-cache-v6": 1,
+        "accademia-audio-tr": 1
+      }
+    },
+    "hu": {
+      "totalFiles": 2,
+      "caches": {
+        "audio-cache-v6": 1,
+        "accademia-audio-hu": 1
+      }
+    },
+    "hi": {
+      "totalFiles": 2,
+      "caches": {
+        "audio-cache-v6": 1,
+        "accademia-audio-hi": 1
+      }
+    },
+    "fa": {
+      "totalFiles": 2,
+      "caches": {
+        "audio-cache-v6": 1,
+        "accademia-audio-fa": 1
+      }
+    }
+  },
+  "summary": {
+    "totalCaches": 25,
+    "totalFiles": 114,
+    "filesByLanguage": {
+      "en": 54,
+      "ko": 10,
+      "ru": 6,
+      "fr": 4,
+      "es": 2,
+      "de": 2,
+      "it": 8,
+      "zh": 4,
+      "ja": 4,
+      "ar": 4,
+      "pt": 2,
+      "nl": 2,
+      "pl": 2,
+      "el": 2,
+      "tr": 2,
+      "hu": 2,
+      "hi": 2,
+      "fa": 2
+    }
+  }
+}

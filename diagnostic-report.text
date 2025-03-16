@@ -1,0 +1,178 @@
+Diagnostic Report
+Generated: 2025-03-16T11:11:54.096Z
+Quick Summary
+Test	Status
+JavaScript Modules Loading	Unknown
+MIME Type Correctness	CORRECT
+Total Network Requests	3
+Browser Information
+{
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+  "platform": "Win32",
+  "language": "en-US",
+  "cookiesEnabled": true,
+  "online": true,
+  "serviceWorkerSupport": true,
+  "cacheApiSupport": true,
+  "screenWidth": 1536,
+  "screenHeight": 791,
+  "highResDisplay": true,
+  "timestamp": "2025-03-16T11:11:39.625Z"
+}
+Module Test Results
+{}
+MIME Type Check
+{
+  "moduleContentType": "application/javascript",
+  "cssContentType": "text/css"
+}
+Response Headers
+{
+  "accept-ranges": "bytes",
+  "access-control-allow-headers": "Origin, X-Requested-With, Content-Type, Accept, Range",
+  "access-control-allow-methods": "GET, OPTIONS",
+  "access-control-allow-origin": "*",
+  "age": "42644",
+  "alt-svc": "h3=\":443\"; ma=86400",
+  "cache-control": "public, max-age=604800",
+  "content-encoding": "br",
+  "content-length": "160",
+  "content-security-policy": "upgrade-insecure-requests",
+  "content-type": "application/javascript",
+  "date": "Sun, 16 Mar 2025 11:11:40 GMT",
+  "etag": "\"137-67d60a98-a3c44c41e0e71e6d;br\"",
+  "expires": "Sat, 22 Mar 2025 23:20:56 GMT",
+  "last-modified": "Sat, 15 Mar 2025 23:17:44 GMT",
+  "panel": "hpanel",
+  "platform": "hostinger",
+  "server": "hcdn",
+  "x-content-type-options": "nosniff",
+  "x-hcdn-cache-status": "HIT",
+  "x-hcdn-request-id": "f7c62981ae893ae7e99dc0c9c3cf5c49-fra-edge1",
+  "x-turbo-charged-by": "LiteSpeed"
+}
+Network Requests (3)
+[
+  {
+    "url": "/test-module.js",
+    "status": 200,
+    "statusText": "",
+    "contentType": "application/javascript",
+    "duration": 98,
+    "timestamp": "2025-03-16T11:11:39.724Z"
+  },
+  {
+    "url": "/test-module.js",
+    "status": 200,
+    "statusText": "",
+    "contentType": "application/javascript",
+    "duration": 105,
+    "timestamp": "2025-03-16T11:11:39.732Z"
+  },
+  {
+    "url": "/assets/index-CkSPFxac.css",
+    "status": 200,
+    "statusText": "",
+    "contentType": "text/css",
+    "duration": 72,
+    "timestamp": "2025-03-16T11:11:39.797Z"
+  }
+]
+Event Log (19)
+[
+  {
+    "timestamp": "2025-03-16T11:11:54.095Z",
+    "message": "Generating diagnostic report...",
+    "type": "info"
+  },
+  {
+    "timestamp": "2025-03-16T11:11:39.797Z",
+    "message": "MIME type checks completed",
+    "type": "info"
+  },
+  {
+    "timestamp": "2025-03-16T11:11:39.797Z",
+    "message": "CSS content type: text/css",
+    "type": "info"
+  },
+  {
+    "timestamp": "2025-03-16T11:11:39.797Z",
+    "message": "Fetch complete: /assets/index-CkSPFxac.css (200, 72ms)",
+    "type": "info"
+  },
+  {
+    "timestamp": "2025-03-16T11:11:39.733Z",
+    "message": "Header checks completed",
+    "type": "info"
+  },
+  {
+    "timestamp": "2025-03-16T11:11:39.732Z",
+    "message": "Fetch complete: /test-module.js (200, 105ms)",
+    "type": "info"
+  },
+  {
+    "timestamp": "2025-03-16T11:11:39.725Z",
+    "message": "Fetching: /assets/index-CkSPFxac.css",
+    "type": "info"
+  },
+  {
+    "timestamp": "2025-03-16T11:11:39.725Z",
+    "message": "Checking CSS MIME type...",
+    "type": "info"
+  },
+  {
+    "timestamp": "2025-03-16T11:11:39.725Z",
+    "message": "test-module.js content type: application/javascript",
+    "type": "info"
+  },
+  {
+    "timestamp": "2025-03-16T11:11:39.724Z",
+    "message": "Fetch complete: /test-module.js (200, 98ms)",
+    "type": "info"
+  },
+  {
+    "timestamp": "2025-03-16T11:11:39.627Z",
+    "message": "Fetching: /test-module.js",
+    "type": "info"
+  },
+  {
+    "timestamp": "2025-03-16T11:11:39.627Z",
+    "message": "Starting header checks...",
+    "type": "info"
+  },
+  {
+    "timestamp": "2025-03-16T11:11:39.626Z",
+    "message": "Fetching: /test-module.js",
+    "type": "info"
+  },
+  {
+    "timestamp": "2025-03-16T11:11:39.626Z",
+    "message": "Checking test-module.js MIME type...",
+    "type": "info"
+  },
+  {
+    "timestamp": "2025-03-16T11:11:39.626Z",
+    "message": "Starting MIME type checks...",
+    "type": "info"
+  },
+  {
+    "timestamp": "2025-03-16T11:11:39.626Z",
+    "message": "Browser diagnostic information collected",
+    "type": "info"
+  },
+  {
+    "timestamp": "2025-03-16T11:11:39.625Z",
+    "message": "Collecting browser diagnostic information...",
+    "type": "info"
+  },
+  {
+    "timestamp": "2025-03-16T11:11:39.625Z",
+    "message": "Regular script test completed successfully",
+    "type": "info"
+  },
+  {
+    "timestamp": "2025-03-16T11:11:39.623Z",
+    "message": "Starting script tests...",
+    "type": "info"
+  }
+]

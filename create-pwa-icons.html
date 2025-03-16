@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generate PWA Icons</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    canvas { border: 1px solid #ccc; margin: 10px 0; }
+    .icon-data { width: 100%; height: 100px; margin: 10px 0; }
+    .container { max-width: 800px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>PWA Icon Generator</h1>
+    <p>This page generates placeholder PWA icons for your app. Copy the generated base64 data and save it as PNG files.</p>
+    
+    <h2>192x192 Icon</h2>
+    <canvas id="canvas192" width="192" height="192"></canvas>
+    <p>Right-click on the image and select "Save Image As..." to save as pwa-192x192.png</p>
+    
+    <h2>512x512 Icon</h2>
+    <canvas id="canvas512" width="512" height="512"></canvas>
+    <p>Right-click on the image and select "Save Image As..." to save as pwa-512x512.png</p>
+  </div>
+
+  <script>
+    function drawIcon(canvasId, size, text) {
+      const canvas = document.getElementById(canvasId);
+      const ctx = canvas.getContext('2d');
+      
+      // Background gradient
+      const gradient = ctx.createLinearGradient(0, 0, size, size);
+      gradient.addColorStop(0, '#f6e6c2');
+      gradient.addColorStop(1, '#d96c0f');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, size, size);
+      
+      // Draw text
+      ctx.font = `bold ${size/4}px Arial`;
+      ctx.fillStyle = '#ffffff';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('A', size/2, size/2);
+      
+      // Draw border
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = size/20;
+      ctx.strokeRect(size/10, size/10, size*8/10, size*8/10);
+    }
+    
+    // Generate icons
+    drawIcon('canvas192', 192, 'A');
+    drawIcon('canvas512', 512, 'A');
+  </script>
+</body>
+</html> 
